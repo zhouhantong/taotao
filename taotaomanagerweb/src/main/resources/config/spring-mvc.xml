@@ -36,9 +36,9 @@
     <!--视图解析器-->
     <bean id="defaultViewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-       <!-- <property name="viewClass"
+        <property name="viewClass"
                   value="org.springframework.web.servlet.view.JstlView" />
-        <property name="contentType" value="text/html" />-->
+        <property name="contentType" value="text/html" />
         <property name="prefix" value="/WEB-INF/jsp/" />
         <property name="suffix" value=".jsp" />
     </bean>
