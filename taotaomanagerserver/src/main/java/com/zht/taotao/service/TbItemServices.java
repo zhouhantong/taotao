@@ -1,5 +1,6 @@
 package com.zht.taotao.service;
 
+import com.zht.taotao.common.EaUIResult;
 import com.zht.taotao.pojo.TbItem;
 
 /**
@@ -7,4 +8,5 @@ import com.zht.taotao.pojo.TbItem;
  */
 public interface TbItemServices {
     public TbItem selectTbTtemById(Long id);
+    public EaUIResult pageTbItemList(int page,int pageSize);
 }

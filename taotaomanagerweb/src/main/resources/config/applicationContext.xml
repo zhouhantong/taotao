@@ -22,10 +22,23 @@
 		  p:minIdle="${jdbc.minIdle}"
 		  p:maxActive="${jdbc.maxActive}"
 	/>
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
-		  p:dataSource-ref="dataSource"
-		  p:mapperLocations="classpath*:mapper/*Mapper.xml"
-	/>
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="mapperLocations" value="classpath*:mapper/*Mapper.xml"/>
+		<!--配置分页插件PageHelper-->
+		<property name="plugins">
+			<array>
+				<bean class="com.github.pagehelper.PageHelper">
+					<property name="properties">
+						<value>
+							dialect=mysql
+							reasonable=true
+						</value>
+					</property>
+				</bean>
+			</array>
+		</property>
+	</bean>
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
 		  p:sqlSessionFactoryBeanName="sqlSessionFactory"
 		  p:basePackage="com.zht.taotao.mapper"

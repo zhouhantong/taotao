@@ -125,4 +125,8 @@
       updated = #{updated,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <select id="selectTbItemCatByParentId" resultMap="BaseResultMap">
+    SELECT * from tb_item_cat WHERE parent_id=#{parentId,jdbcType=BIGINT}
+  </select>
 </mapper>
