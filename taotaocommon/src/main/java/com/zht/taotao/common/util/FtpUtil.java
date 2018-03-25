@@ -50,11 +50,11 @@ public class FtpUtil {
             }
             ftpClient.enterLocalPassiveMode();
             ftpClient.setControlEncoding("UTF-8");
-            //String fileName=new String(ftpModer.getFileName().getBytes("UTF-8"),"iso-8859-1");
+            String fileName=new String(ftpModer.getFileName().getBytes("GBK"),"iso-8859-1");
             //设置上传文件的类型
             ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
             //上传文件
-            if(!ftpClient.storeFile(ftpModer.getFileName(),inputStream)){
+            if(!ftpClient.storeFile(fileName,inputStream)){
                 return result;
             }
             inputStream.close();//关闭流
