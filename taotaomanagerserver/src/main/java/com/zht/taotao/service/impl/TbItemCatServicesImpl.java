@@ -1,6 +1,6 @@
 package com.zht.taotao.service.impl;
 
-import com.zht.taotao.common.EUITreeNode;
+import com.zht.taotao.common.pojo.EUITreeNode;
 import com.zht.taotao.mapper.TbItemCatMapper;
 import com.zht.taotao.pojo.TbItemCat;
 import com.zht.taotao.service.TbItemCatServices;

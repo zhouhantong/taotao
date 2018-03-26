@@ -2,7 +2,7 @@ package com.zht.taotao.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.zht.taotao.common.EaUIResult;
+import com.zht.taotao.common.pojo.EaUIResult;
 import com.zht.taotao.mapper.TbItemMapper;
 import com.zht.taotao.pojo.TbItem;
 import com.zht.taotao.service.TbItemServices;

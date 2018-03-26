@@ -1,6 +1,6 @@
 package com.zht.taotao.controller;
 
-import com.zht.taotao.common.EUITreeNode;
+import com.zht.taotao.common.pojo.EUITreeNode;
 import com.zht.taotao.service.TbItemCatServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -36,8 +36,16 @@ public class FTPTest {
     }
     @Test
     public void testFtpUtil()throws Exception{
-        FileInputStream fileInputStream=new FileInputStream(new File("F:/相册/QQ截图20130213005721.png"));
-        FtpModer ftpModer=new FtpModer("192.168.88.128","zht","zhou4236542","/home/zht/www/images","/2018/03/23","F:/相册/QQ截图20130213005721.png");
+        String path="C:\\Users/Administrator\\Desktop\\QQ截图20180226160131.png";
+        FileInputStream fileInputStream=new FileInputStream(new File(path));
+        //FtpModer ftpModer=new FtpModer("192.168.88.128","zht","zhou4236542","/home/zht/www/images","/2018/03/23","F:/相册/QQ截图20130213005721.png");
+        FtpModer ftpModer=new FtpModer();
+        ftpModer.setHost("192.168.145.128");
+        ftpModer.setUsername("zht");
+        ftpModer.setPassword("zht123.");
+        ftpModer.setBasePath("/home/zht/www/images");
+        ftpModer.setFilePath("/2018/03/26");
+        ftpModer.setFileName(path);
         FtpUtil.uploadFile(ftpModer,fileInputStream);
     }
 }

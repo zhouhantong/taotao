@@ -1,6 +1,6 @@
 package com.zht.taotao.service;
 
-import com.zht.taotao.common.EaUIResult;
+import com.zht.taotao.common.pojo.EaUIResult;
 import com.zht.taotao.pojo.TbItem;
 
 /**

@@ -1,4 +1,4 @@
-package com.zht.taotao.common;
+package com.zht.taotao.common.pojo;
 
 /**
  * Created by Administrator on 2018/3/22.

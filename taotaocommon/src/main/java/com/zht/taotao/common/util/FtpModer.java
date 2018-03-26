@@ -18,7 +18,7 @@ public class FtpModer {
     private  String basePath;
     //FTP服务器文件存放路径。例如分日期存放：/2015/01/01。文件的路径为basePath+filePath
     private  String filePath;
-    //上传到FTP服务器上的文件名
+    //上传到FTP服务器上的文件名,可以自己定义,也可以使用原文件名
     private  String fileName;
 
     public FtpModer(){}
@@ -100,7 +100,7 @@ public class FtpModer {
     }
 
     public void setFileName(String fileName) {
-        this.fileName = fileName;
+        this.fileName=subFilePath(fileName);
     }
     /**
      * 截取上传文件的文件名
@@ -108,16 +108,23 @@ public class FtpModer {
      * @return
      */
     public static String subFilePath(String filePath){
-        String[] fileName=filePath.split("/");
+        String file=filePath.replaceAll("\\\\","/");
+        System.out.println(file);
+        String[] fileName=file.split("/");
         String ress="";
-        for (String res: fileName) {
-            ress=res;
+        if(filePath.length()>0&&fileName!=null){
+            for (String res: fileName) {
+                ress=res;
+            }
+        }else {
+            ress=filePath;
         }
         return ress;
     }
 
     public static void main(String[] args) {
-        String res=subFilePath("F:/相册/天津/0A93EE9A-C9A0-4DF1-AE87-6B5C30DD779B.JPG");
+        //String res=subFilePath("F:/相册/天津/0A93EE9A-C9A0-4DF1-AE87-6B5C30DD779B.JPG");
+        String res=subFilePath("hello.jpg");
         System.out.println(res);
     }
 }

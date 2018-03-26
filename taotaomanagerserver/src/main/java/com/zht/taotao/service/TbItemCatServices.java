@@ -1,6 +1,6 @@
 package com.zht.taotao.service;
 
-import com.zht.taotao.common.EUITreeNode;
+import com.zht.taotao.common.pojo.EUITreeNode;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.zht.taotao.controller;
 
-import com.zht.taotao.common.EaUIResult;
+import com.zht.taotao.common.pojo.EaUIResult;
 import com.zht.taotao.pojo.TbItem;
 import com.zht.taotao.service.TbItemServices;
 import org.springframework.beans.factory.annotation.Autowired;
