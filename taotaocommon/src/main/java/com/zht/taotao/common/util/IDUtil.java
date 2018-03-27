@@ -25,6 +25,21 @@ public class IDUtil {
         return str;
     }
 
+    /**
+     * 生成商品id
+     */
+    public static Long getItemId(){
+        //取当前时间的长整形包含毫秒
+        long millis=System.currentTimeMillis();
+        //取2位随机数
+        Random random=new Random();
+        int end=random.nextInt(99);
+        //如果不足两位，前面补0
+        String str=millis+String.format("%02d",end);
+        Long id=new Long(str);
+        return id;
+    }
+
     public static void main(String[] args) {
         System.out.println(getStringRandom(3));
         System.out.println(getImageName());

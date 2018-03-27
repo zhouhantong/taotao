@@ -1,12 +1,14 @@
 package com.zht.taotao.controller;
 
 import com.zht.taotao.common.pojo.EaUIResult;
+import com.zht.taotao.common.util.TaotaoResult;
 import com.zht.taotao.pojo.TbItem;
 import com.zht.taotao.service.TbItemServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -28,5 +30,12 @@ public class TbItemController {
     public EaUIResult pageTbItemList(Integer page,Integer rows){
         EaUIResult eaUIResult=tbItemServices.pageTbItemList(page,rows);
         return eaUIResult;
+    }
+
+    @RequestMapping(value = "/save",method = RequestMethod.POST)
+    @ResponseBody
+    public TaotaoResult createTbItem(TbItem tbItem){
+        TaotaoResult taotaoResult=tbItemServices.insertTbItem(tbItem);
+        return taotaoResult;
     }
 }
