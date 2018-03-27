@@ -38,7 +38,7 @@ public class FtpComUtil {
             //登录ftp服务器
             ftpClient.login(userName,password);
             int reply=ftpClient.getReplyCode();
-            if(!FTPReply.isPositiveIntermediate(reply)){
+            if(!FTPReply.isPositiveCompletion(reply)){
                 ftpClient.disconnect();
                 return result;
             }
