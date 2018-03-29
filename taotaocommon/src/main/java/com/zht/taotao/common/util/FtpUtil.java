@@ -21,7 +21,7 @@ public class FtpUtil {
         FTPClient ftpClient=new FTPClient();
         //创建ftp服务连接对象
         try {
-            ftpClient.connect(ftpModer.getHost(),ftpModer.getPost());
+            ftpClient.connect(ftpModer.getHost(),ftpModer.getPort());
             //登录
             ftpClient.login(ftpModer.getUsername(),ftpModer.getPassword());
             int reply=ftpClient.getReplyCode();
