@@ -1,6 +1,6 @@
 package com.zht.taotao.service;
 
-import com.zht.taotao.common.pojo.EaUIResult;
+import com.zht.taotao.common.pojo.EazyUiResult;
 import com.zht.taotao.common.util.TaotaoResult;
 import com.zht.taotao.pojo.TbItem;
 
@@ -9,6 +9,6 @@ import com.zht.taotao.pojo.TbItem;
  */
 public interface TbItemServices {
      TbItem selectTbTtemById(Long id);
-     EaUIResult pageTbItemList(int page,int pageSize);
-     TaotaoResult insertTbItem(TbItem tbItem);
+     EazyUiResult pageTbItemList(int page, int pageSize);
+     TaotaoResult insertTbItem(TbItem tbItem,String desc)throws Exception;
 }

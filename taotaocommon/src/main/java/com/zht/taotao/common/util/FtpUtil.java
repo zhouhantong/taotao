@@ -29,15 +29,17 @@ public class FtpUtil {
                 ftpClient.disconnect();
                 return result;
             }
-            //切换到上传目录
-            if(ftpModer.getFilePath()==null){//没有子路径
+            //切换到上传目录,//没有子路径
+            if(ftpModer.getFilePath()==null){
                 ftpClient.changeWorkingDirectory(ftpModer.getBasePath());
             }else if(!ftpClient.changeWorkingDirectory(ftpModer.getBasePath()+ftpModer.getFilePath())){
                 //如果目录不存在创建目录
                 String[] dirs = ftpModer.getFilePath().split("/");
                 String tempPath = ftpModer.getBasePath();
                 for (String dir : dirs) {
-                    if (null == dir || "".equals(dir)) continue;
+                    if (null == dir || "".equals(dir)){
+                        continue;
+                    }
                     tempPath += "/" + dir;
                     if (!ftpClient.changeWorkingDirectory(tempPath)) {
                         if (!ftpClient.makeDirectory(tempPath)) {

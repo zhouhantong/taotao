@@ -1,6 +1,6 @@
 package com.zht.taotao.service.impl;
 
-import com.zht.taotao.common.pojo.EUITreeNode;
+import com.zht.taotao.common.pojo.EazyUiTreeNode;
 import com.zht.taotao.mapper.TbItemCatMapper;
 import com.zht.taotao.pojo.TbItemCat;
 import com.zht.taotao.service.TbItemCatServices;
@@ -24,16 +24,16 @@ public class TbItemCatServicesImpl implements TbItemCatServices{
      * @return
      */
     @Override
-    public List<EUITreeNode> getCatList(Long parentId) {
+    public List<EazyUiTreeNode> getCatList(Long parentId) {
         List<TbItemCat>list=tbItemCatMapper.selectTbItemCatByParentId(parentId);
-        List<EUITreeNode>euiTreeNodes=new ArrayList<>();
+        List<EazyUiTreeNode> eazyUiTreeNodes =new ArrayList<>();
         for (TbItemCat tb:list) {
-            EUITreeNode euiTreeNode=new EUITreeNode();
-            euiTreeNode.setId(tb.getId());
-            euiTreeNode.setText(tb.getName());
-            euiTreeNode.setState(tb.getIsParent()?"closed":"open");
-            euiTreeNodes.add(euiTreeNode);
+            EazyUiTreeNode eazyUiTreeNode =new EazyUiTreeNode();
+            eazyUiTreeNode.setId(tb.getId());
+            eazyUiTreeNode.setText(tb.getName());
+            eazyUiTreeNode.setState(tb.getIsParent()?"closed":"open");
+            eazyUiTreeNodes.add(eazyUiTreeNode);
         }
-        return euiTreeNodes;
+        return eazyUiTreeNodes;
     }
 }

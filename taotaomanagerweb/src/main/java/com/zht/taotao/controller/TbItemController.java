@@ -1,6 +1,6 @@
 package com.zht.taotao.controller;
 
-import com.zht.taotao.common.pojo.EaUIResult;
+import com.zht.taotao.common.pojo.EazyUiResult;
 import com.zht.taotao.common.util.TaotaoResult;
 import com.zht.taotao.pojo.TbItem;
 import com.zht.taotao.service.TbItemServices;
@@ -27,15 +27,15 @@ public class TbItemController {
     }
     @RequestMapping("/list")
     @ResponseBody
-    public EaUIResult pageTbItemList(Integer page,Integer rows){
-        EaUIResult eaUIResult=tbItemServices.pageTbItemList(page,rows);
-        return eaUIResult;
+    public EazyUiResult pageTbItemList(Integer page, Integer rows){
+        EazyUiResult eazyUiResult =tbItemServices.pageTbItemList(page,rows);
+        return eazyUiResult;
     }
 
     @RequestMapping(value = "/save",method = RequestMethod.POST)
     @ResponseBody
-    public TaotaoResult createTbItem(TbItem tbItem){
-        TaotaoResult taotaoResult=tbItemServices.insertTbItem(tbItem);
+    public TaotaoResult createTbItem(TbItem tbItem,String desc)throws Exception{
+        TaotaoResult taotaoResult=tbItemServices.insertTbItem(tbItem,desc);
         return taotaoResult;
     }
 }

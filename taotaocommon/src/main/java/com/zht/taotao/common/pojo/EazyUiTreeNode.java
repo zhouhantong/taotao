@@ -3,7 +3,7 @@ package com.zht.taotao.common.pojo;
 /**
  * Created by Administrator on 2018/3/22.
  */
-public class EUITreeNode {
+public class EazyUiTreeNode {
     private long id;
     private String text;
     private String state;

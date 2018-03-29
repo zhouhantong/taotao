@@ -1,7 +1,9 @@
 package com.zht.taotao.mapper;
 
 import com.zht.taotao.pojo.TbItemDesc;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface TbItemDescMapper {
     int deleteByPrimaryKey(Long itemId);
 

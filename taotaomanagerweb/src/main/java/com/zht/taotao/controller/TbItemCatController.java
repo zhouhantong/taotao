@@ -1,6 +1,6 @@
 package com.zht.taotao.controller;
 
-import com.zht.taotao.common.pojo.EUITreeNode;
+import com.zht.taotao.common.pojo.EazyUiTreeNode;
 import com.zht.taotao.service.TbItemCatServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,8 +20,8 @@ public class TbItemCatController {
     private TbItemCatServices tbItemCatServices;
     @RequestMapping("/list")
     @ResponseBody
-    public List<EUITreeNode> getCatList(@RequestParam(value = "id",defaultValue = "0") Long parentId){
-        List<EUITreeNode>list=tbItemCatServices.getCatList(parentId);
+    public List<EazyUiTreeNode> getCatList(@RequestParam(value = "id",defaultValue = "0") Long parentId){
+        List<EazyUiTreeNode>list=tbItemCatServices.getCatList(parentId);
         return list;
     }
 }

@@ -13,13 +13,13 @@ import java.util.List;
  * 淘淘商城通用响应数据
  */
 public class TaotaoResult {
-    //json对象
+    /**json对象*/
     private static final ObjectMapper MAPPER=new ObjectMapper();
-    //响应状态
+    /**响应状态*/
     private Integer status;
-    //响应消息
+    /**响应消息*/
     private String msg;
-    //响应数据
+    /**响应数据*/
     private Object data;
     public TaotaoResult (){}
 

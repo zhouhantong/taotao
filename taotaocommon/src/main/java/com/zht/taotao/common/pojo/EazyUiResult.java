@@ -6,13 +6,13 @@ import java.util.List;
  * Created by Administrator on 2018/3/22.
  * 通用EasyUI结果集
  */
-public class EaUIResult {
+public class EazyUiResult {
     private Long total;
     private List<?> rows;
     private String meassage;
-    private String code;
-    public EaUIResult(){}
-    public EaUIResult(Long total,List<?> rows){
+    private int code;
+    public EazyUiResult(){}
+    public EazyUiResult(Long total, List<?> rows){
     this.total=total;
     this.rows=rows;
     }
@@ -40,11 +40,11 @@ public class EaUIResult {
         this.meassage = meassage;
     }
 
-    public String getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code = code;
     }
 }
