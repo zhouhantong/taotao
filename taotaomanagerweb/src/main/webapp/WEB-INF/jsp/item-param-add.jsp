@@ -100,7 +100,7 @@
     					$("#itemParamList").datagrid("reload");
     				});
 				}
-			});
+			},"json");
 		});
 	});
 </script>

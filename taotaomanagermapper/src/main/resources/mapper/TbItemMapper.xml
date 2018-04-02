@@ -161,6 +161,8 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectTbItemList" resultMap="BaseResultMap">
-    SELECT * FROM tb_item
+    SELECT
+     <include refid="Base_Column_List"/>
+    FROM tb_item
   </select>
 </mapper>

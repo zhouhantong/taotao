@@ -45,13 +45,11 @@ public class TbItemServicesImpl implements TbItemServices{
             eazyUiResult.setTotal(pageInfo.getTotal());
             eazyUiResult.setRows(pageInfo.getList());
             eazyUiResult.setCode(StatusCodeEnum.SUCCESS.getCode());
-            eazyUiResult.setMeassage("请求成功！");
+            eazyUiResult.setMeassage(StatusCodeEnum.SUCCESS.getName());
             return eazyUiResult;
         }catch (Exception e){
-            e.printStackTrace();
-            eazyUiResult.setRows(new ArrayList<TbItem>());
             eazyUiResult.setCode(StatusCodeEnum.ERROR.getCode());
-            eazyUiResult.setMeassage("请求失败："+e.getMessage());
+            eazyUiResult.setMeassage(StatusCodeEnum.ERROR.getName()+e.getMessage());
             return eazyUiResult;
         }
     }

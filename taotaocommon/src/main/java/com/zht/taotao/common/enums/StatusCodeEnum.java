@@ -7,9 +7,9 @@ package com.zht.taotao.common.enums;
  */
 public enum StatusCodeEnum {
     /**操作成功*/
-    SUCCESS(200,"成功"),
+    SUCCESS(200,"请求成功!"),
     /**操作失败*/
-    ERROR(500,"失败");
+    ERROR(500,"请求异常:");
     int code;
     String name;
     private StatusCodeEnum(int code, String name){

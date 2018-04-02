@@ -104,4 +104,20 @@
       updated = #{updated,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <select id="selectItemParamList" resultType="com.zht.taotao.common.pojo.TbItemParamMap">
+    SELECT
+    p.id id,
+    p.item_cat_id itemCatId,
+    p.param_data paramData,
+    p.created created,
+    p.updated updated,
+    c.name itemCatName
+    FROM
+    tb_item_param p
+    LEFT JOIN tb_item_cat c ON p.item_cat_id = c.id
+  </select>
+
+  <select id="selectItemParamByCid" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    SELECT * FROM tb_item_param where item_cat_id=#{cid,jdbcType=BIGINT}
+  </select>
 </mapper>
