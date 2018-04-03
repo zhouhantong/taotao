@@ -1,7 +1,9 @@
 package com.zht.taotao.mapper;
 
 import com.zht.taotao.pojo.TbItemParamItem;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface TbItemParamItemMapper {
     int deleteByPrimaryKey(Long id);
 
