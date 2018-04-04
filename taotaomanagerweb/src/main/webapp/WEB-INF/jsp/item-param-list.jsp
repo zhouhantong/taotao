@@ -13,7 +13,7 @@
         </tr>
     </thead>
 </table>
-<div id="itemEditWindow" class="easyui-window" title="编辑商品规格" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/item-param-edit'" style="width:80%;height:80%;padding:10px;">
+<div id="itemParamEditWindow" class="easyui-window" title="编辑商品规格" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/item-param-edit'" style="width:80%;height:80%;padding:10px;">
 </div>
 <script>
 
@@ -58,12 +58,41 @@
                 $.messager.alert('提示','只能选择一个商品规格!');
                 return ;
             }
-            alert(ids)
-        	$("#itemEditWindow").window({
+        	$("#itemParamEditWindow").window({
         	    onLoad:function () {
                     //回显数据
                     var data = $("#itemParamList").datagrid("getSelections")[0];
-                    alert(data)
+                    itemParam(data);
+                    TAOTAO.initItemCat({
+                            "data":data,
+                            "cid":data.itemCatName,
+                            fun:function(node){
+                                $(".addGroupTr").hide().find(".param").remove();
+                                //  判断选择的类目是否已经添加过规格
+                                $.getJSON("/item/param/query/itemcatid/" + node.id,function(data){
+                                    if(data.status == 200 && data.data){
+                                        $(".addGroupTrEdit").show();
+                                        var paramData = JSON.parse(data.data.paramData);
+                                        var html="<ul>";
+                                        for(var i in paramData){
+                                            var pd=paramData[i];
+                                            html+="<li><input class='easyui-textbox' style='width: 150px;' name='group' value='"+pd.group+"'/>" +
+                                                "&nbsp;"+"<a href='javascript:void(0)' class='easyui-linkbutton addParam'  title='添加参数' data-options='plain:true,iconCls:'icon-add''>" +
+                                                "</a></li>";
+                                            for(var j in pd.params){
+                                                var ps=pd.params[j];
+                                                html+="<li><span>|-------</span>"+
+                                                    "<input  style='width: 150px;' class='easyui-textbox' name='param' value='"+ps+"'/>"+
+                                                    "&nbsp;<a href='javascript:void(0)' class='easyui-linkbutton delParam' title='删除' data-options='plain:true,iconCls:'icon-cancel''></a></li>"
+                                            }
+
+                                        }
+                                        html+="</ul>";
+                                        $(".addGroupTrEdit").html(html);
+                                    }
+                                });
+                            }
+                    })
                 }
             }).window("open");
         }

@@ -65,4 +65,14 @@ public class TbItemParamServicesImpl implements TbItemParamServices{
         }
         return TaotaoResult.ok();
     }
+
+    @Override
+    public TaotaoResult updateTbItemParam(TbItemParam tbItemParam) throws Exception {
+        tbItemParam.setUpdated(new Date());
+        int n=tbItemParamMapper.updateByPrimaryKeySelective(tbItemParam);
+        if(n<0){
+            throw new Exception();
+        }
+        return TaotaoResult.ok();
+    }
 }

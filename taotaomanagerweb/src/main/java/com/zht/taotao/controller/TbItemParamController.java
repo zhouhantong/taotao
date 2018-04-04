@@ -41,4 +41,13 @@ public class TbItemParamController {
         TaotaoResult result=tbItemParamServices.insertTbItemParam(tbItemParam);
         return result;
     }
+    @RequestMapping("/update/{id}")
+    @ResponseBody
+    public TaotaoResult updateTbItemParam(@PathVariable long id,String paramData)throws Exception{
+        TbItemParam tbItemParam=new TbItemParam();
+        tbItemParam.setId(id);
+        tbItemParam.setParamData(paramData);
+        TaotaoResult result=tbItemParamServices.updateTbItemParam(tbItemParam);
+        return result;
+    }
 }

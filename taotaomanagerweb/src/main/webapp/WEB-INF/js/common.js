@@ -249,3 +249,42 @@ var TT = TAOTAO = {
 		});
     }
 };
+
+function itemParam(node){
+	$("#itemCatName").html(node.itemCatName);
+	$("#itemParamId").val(node.id);
+    $(".addGroupTr").hide().find(".param").remove();
+    //  判断选择的类目是否已经添加过规格
+    $.getJSON("/item/param/query/itemcatid/" + node.itemCatId,function(data){
+        if(data.status == 200 && data.data){
+            $(".addGroupTrEdit").show();
+            var paramData = JSON.parse(data.data.paramData);
+            var html="";
+            for(var i in paramData){
+                var pd=paramData[i];
+                html+="<li class='paramEdit'><ul><li><span class='textbox' style='width: 148px; height: 20px;'><input type='text' class='textbox-text validatebox-text textbox-prompt' autocomplete='off' placeholder='' style='margin-left: 0px; margin-right: 0px; padding-top: 3px; padding-bottom: 3px; width: 140px;'  value='"+pd.group+"'>" +
+                    "<input type='hidden' class='textbox-value' name='group' value='"+pd.group+"'></span>&nbsp;<a href='javascript:void(0)' class='easyui-linkbutton addParam' title='添加参数' data-options='plain:true,iconCls:'icon-add'' group='' id=''>" +
+                    "<span class='l-btn-left l-btn-icon-left'><span class='l-btn-text l-btn-empty'>&nbsp;</span><span class='l-btn-icon icon-add'>&nbsp;</span></span></a></li>";
+                for(var j in pd.params){
+                    var ps=pd.params[j];
+                    html+="<li><span>|-------</span><span class='textbox' style='width: 148px; height: 20px;'>" +
+                        "<input type='text' class='textbox-text validatebox-text textbox-prompt' autocomplete='off' placeholder='' style='margin-left: 0px; margin-right: 0px; padding-top: 3px; padding-bottom: 3px; width: 140px;'  value='"+ps+"'>" +
+                        "<input type='hidden' class='textbox-value' name='param' value='+ps+'></span>&nbsp;<a href='javascript:void(0)' class='easyui-linkbutton delParam' title='删除' data-options='plain:true,iconCls:'icon-cancel' group='' id=''>" +
+                        "<span class='l-btn-left l-btn-icon-left'><span class='l-btn-text l-btn-empty'>&nbsp;</span><span class='l-btn-icon icon-cancel'>&nbsp;</span></span></a></li>";
+                }
+                html+="</ul></li>";
+            }
+            $(".addGroupTrEdit").find("td").find("ul").eq(0).append(html);
+            $(".addGroupTrEdit").find(".addParam").click(function () {
+                var li = $(".itemParamEditTemplate li").eq(2).clone();
+                li.find(".delParam").click(function(){
+                    $(this).parent().remove();
+                });
+                $(this).parent().parent().append(li);
+            });
+            $(".addGroupTrEdit").find(".delParam").click(function () {
+                $(this).parent().remove();
+            });
+        }
+    });
+}

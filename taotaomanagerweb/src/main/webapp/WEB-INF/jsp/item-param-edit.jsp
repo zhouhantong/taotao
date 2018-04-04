@@ -3,15 +3,15 @@
 <table cellpadding="5" style="margin-left: 30px" id="itemParamEditTable" class="itemParam">
 	<tr>
 		<td>商品类目:</td>
-		<td><a href="javascript:void(0)" class="easyui-linkbutton selectItemCat">选择类目</a> 
-			<input type="hidden" name="cid" style="width: 280px;"></input>
+		<td><div id="itemCatName">
+		</div><input type="hidden" name="itemParamId" style="width: 280px;" id="itemParamId"/>
 		</td>
 	</tr>
-	<tr class="hide addGroupTr">
+	<tr class="hide addGroupTrEdit">
 		<td>规格参数:</td>
 		<td>
 			<ul>
-				<li><a href="javascript:void(0)" class="easyui-linkbutton addGroup">添加分组</a></li>
+				<li><a href="javascript:void(0)" class="easyui-linkbutton addGroupEdit">添加分组</a></li>
 			</ul>
 		</td>
 	</tr>
@@ -22,55 +22,25 @@
 		</td>
 	</tr>
 </table>
-<div  class="itemParamAddTemplate" style="display: none;">
-	<li class="param">
-		<%--<ul>
+<div  class="itemParamEditTemplate" style="display: none;">
+	<li class="paramEdit">
+		<ul>
 			<li>
 				<input class="easyui-textbox" style="width: 150px;" name="group"/>&nbsp;<a href="javascript:void(0)" class="easyui-linkbutton addParam"  title="添加参数" data-options="plain:true,iconCls:'icon-add'"></a>
 			</li>
 			<li>
 				<span>|-------</span><input  style="width: 150px;" class="easyui-textbox" name="param"/>&nbsp;<a href="javascript:void(0)" class="easyui-linkbutton delParam" title="删除" data-options="plain:true,iconCls:'icon-cancel'"></a>						
 			</li>
-		</ul>--%>
+		</ul>
 	</li>
 </div>
 <script style="text/javascript">
 	$(function(){
-		TAOTAO.initItemCat({
-			fun:function(node){
-			$(".addGroupTr").hide().find(".param").remove();
-				//  判断选择的类目是否已经添加过规格
-			  $.getJSON("/item/param/query/itemcatid/" + node.id,function(data){
-				  if(data.status == 200 && data.data){
-                      $(".addGroupTr").show();
-                      $(".itemParamAddTemplate").show();
-                      var paramData = JSON.parse(data.data.paramData);
-                      var html="<ul>";
-					  for(var i in paramData){
-					      var pd=paramData[i];
-					      html+="<li><input class='easyui-textbox' style='width: 150px;' name='group' value='"+pd.group+"'/>" +
-							  "&nbsp;"+"<a href='javascript:void(0)' class='easyui-linkbutton addParam'  title='添加参数' data-options='plain:true,iconCls:'icon-add''>" +
-						  "</a></li>";
-					      for(var j in pd.params){
-					          var ps=pd.params[j];
-					          html+="<li><span>|-------</span>"+
-									  "<input  style='width: 150px;' class='easyui-textbox' name='param' value='"+ps+"'/>"+
-									  "&nbsp;<a href='javascript:void(0)' class='easyui-linkbutton delParam' title='删除' data-options='plain:true,iconCls:'icon-cancel''></a></li>"
-						  }
-
-					  }
-					  	html+="</ul>";
-					  $(".param").html(html);
-				  }
-			  });
-			}
-		});
-		
-		$(".addGroup").click(function(){
-			  var temple = $(".itemParamAddTemplate li").eq(0).clone();
+		$(".addGroupEdit").click(function(){
+			  var temple = $(".itemParamEditTemplate li").eq(0).clone();
 			  $(this).parent().parent().append(temple);
 			  temple.find(".addParam").click(function(){
-				  var li = $(".itemParamAddTemplate li").eq(2).clone();
+				  var li = $(".itemParamEditTemplate li").eq(2).clone();
 				  li.find(".delParam").click(function(){
 					  $(this).parent().remove();
 				  });
@@ -80,14 +50,10 @@
 				  $(this).parent().remove();
 			  });
 		 });
-		
-		$("#itemParamAddTable .close").click(function(){
-			$(".panel-tool-close").click();
-		});
-		
-		$("#itemParamAddTable .submit").click(function(){
+
+		$("#itemParamEditTable .submit").click(function(){
 			var params = [];
-			var groups = $("#itemParamAddTable [name=group]");
+			var groups = $("#itemParamEditTable [name=group]");
 			groups.each(function(i,e){
 				var p = $(e).parentsUntil("ul").parent().find("[name=param]");
 				var _ps = [];
@@ -105,11 +71,12 @@
 					});					
 				}
 			});
-			var url = "/item/param/save/"+$("#itemParamAddTable [name=cid]").val();
+			console.log($("#itemParamId").val());
+			var url = "/item/param/update/"+$("#itemParamEditTable [name=itemParamId]").val();
 			$.post(url,{"paramData":JSON.stringify(params)},function(data){
 				if(data.status == 200){
-					$.messager.alert('提示','新增商品规格成功!',undefined,function(){
-						$(".panel-tool-close").click();
+					$.messager.alert('提示','修改商品规格成功!',undefined,function(){
+                        $("#itemParamEditWindow").window('close');
     					$("#itemParamList").datagrid("reload");
     				});
 				}

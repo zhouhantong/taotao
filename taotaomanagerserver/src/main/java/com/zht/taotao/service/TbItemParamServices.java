@@ -15,4 +15,6 @@ public interface TbItemParamServices {
     EazyUiResult selectItemParamList(int page,int pageSize);
 
     TaotaoResult insertTbItemParam(TbItemParam tbItemParam)throws Exception;
+
+    TaotaoResult updateTbItemParam(TbItemParam tbItemParam)throws Exception;
 }
