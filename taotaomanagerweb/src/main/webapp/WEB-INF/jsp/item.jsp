@@ -1,12 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+    <style type="text/css">
+        .Ptable {
+            margin: 10px 0;
+        }
+        .Ptable-item h3 {
+            width: 110px;
+            text-align: right;
+        }
+        .Ptable-item h3, .package-list h3 {
+            font-weight: 400;
+            font-size: 12px;
+            float: left;
+        }
+        .Ptable-item {
+            padding: 12px 0;
+            line-height: 220%;
+            color: #999;
+            font-size: 12px;
+        }
+        .Ptable-item, .p-parameter {
+            border-bottom: 1px solid #eee;
+        }
+        .Ptable-item dl {
+            margin-left: 110px;
+        }
+        .Ptable-item dt {
+            width: 160px;
+            float: left;
+            text-align: right;
+            padding-right: 5px;
+        }
+        .Ptable-item dd {
+            margin-left: 210px;
+        }
+    </style>
+    <script type="application/javascript">
+    $(function () {
+        $.post("showItemParamItem/48",function (data) {
+            $("#itemParamitem").html(data);
+        }
+        )
+    });
+    </script>
+<div id="itemParamitem">
 ${itemParam}
-</body>
-</html>
+</div>

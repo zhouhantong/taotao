@@ -5,6 +5,7 @@ import com.zht.taotao.mapper.TbItemParamItemMapper;
 import com.zht.taotao.pojo.TbItemParamItem;
 import com.zht.taotao.service.TbItemParamItemServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import java.util.Map;
  *
  * @author 周寒通
  */
+@Service
 public class TbItemParamItemServicesImpl implements TbItemParamItemServices {
     @Autowired
     private TbItemParamItemMapper tbItemParamItemMapper;
@@ -27,7 +29,7 @@ public class TbItemParamItemServicesImpl implements TbItemParamItemServices {
         sb.append(			"<div class=\"Ptable\">\n");
         for (Map m1:jsonToList){
         sb.append("    <div class=\"Ptable-item\">\n");
-        sb.append("        <h3>"+m1.get("k")+"</h3>\n" );
+        sb.append("        <h3>"+m1.get("group")+"</h3>\n" );
         List<Map>params=(List<Map>) m1.get("params");
 
         sb.append("        <dl>\n" );
@@ -38,6 +40,6 @@ public class TbItemParamItemServicesImpl implements TbItemParamItemServices {
         sb.append("    </div>\n" );
         }
         sb.append("	</div>");
-        return null;
+        return sb.toString();
     }
 }
