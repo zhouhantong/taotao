@@ -18,4 +18,6 @@ public interface TbItemParamItemMapper {
     int updateByPrimaryKeyWithBLOBs(TbItemParamItem record);
 
     int updateByPrimaryKey(TbItemParamItem record);
+
+    TbItemParamItem showItemParamItemByItemId(Long itemId);
 }

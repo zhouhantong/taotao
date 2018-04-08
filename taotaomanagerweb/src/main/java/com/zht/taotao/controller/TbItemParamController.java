@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -48,6 +49,12 @@ public class TbItemParamController {
         tbItemParam.setId(id);
         tbItemParam.setParamData(paramData);
         TaotaoResult result=tbItemParamServices.updateTbItemParam(tbItemParam);
+        return result;
+    }
+    @RequestMapping("/delete")
+    @ResponseBody
+    public TaotaoResult deleteTbItemParam(@RequestParam("ids") long id)throws Exception{
+        TaotaoResult result=tbItemParamServices.deleteTbItemParam(id);
         return result;
     }
 }

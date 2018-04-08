@@ -114,7 +114,7 @@
             					$("#itemParamList").datagrid("reload");
             				});
             			}
-            		});
+            		},"json");
         	    }
         	});
         }

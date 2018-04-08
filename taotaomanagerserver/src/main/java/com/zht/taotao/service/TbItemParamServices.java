@@ -12,9 +12,11 @@ import com.zht.taotao.pojo.TbItemParam;
 public interface TbItemParamServices {
     TaotaoResult getTbItemParamByCid(long cid);
 
-    EazyUiResult selectItemParamList(int page,int pageSize);
+    EazyUiResult selectItemParamList(int page, int pageSize);
 
-    TaotaoResult insertTbItemParam(TbItemParam tbItemParam)throws Exception;
+    TaotaoResult insertTbItemParam(TbItemParam tbItemParam) throws Exception;
 
-    TaotaoResult updateTbItemParam(TbItemParam tbItemParam)throws Exception;
+    TaotaoResult updateTbItemParam(TbItemParam tbItemParam) throws Exception;
+
+    TaotaoResult deleteTbItemParam(long id) throws Exception;
 }
