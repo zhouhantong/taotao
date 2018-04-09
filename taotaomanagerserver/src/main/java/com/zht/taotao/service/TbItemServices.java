@@ -9,6 +9,6 @@ import com.zht.taotao.pojo.TbItem;
  */
 public interface TbItemServices {
      TbItem selectTbTtemById(Long id);
-     EazyUiResult pageTbItemList(int page, int pageSize);
+     EazyUiResult pageTbItemList(int page, int pageSize,TbItem tbItem);
      TaotaoResult insertTbItem(TbItem tbItem,String desc,String itemParams)throws Exception;
 }

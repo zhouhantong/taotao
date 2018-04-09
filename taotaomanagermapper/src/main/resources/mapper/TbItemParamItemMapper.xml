@@ -108,4 +108,24 @@
   <select id="showItemParamItemByItemId" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
     SELECT * from tb_item_param_item where item_id=#{itemId}
   </select>
+
+  <select id="findItemParamItemList" resultType="com.zht.taotao.common.pojo.TbItemParamItemMap" parameterType="com.zht.taotao.common.pojo.TbItemParamItemMap">
+    SELECT
+	p.id,
+	p.item_id itemId,
+	p.param_data paramData,
+	p.created,
+	p.updated,
+	i.title itemName
+    FROM
+	tb_item_param_item p
+    LEFT JOIN tb_item i on p.item_id=i.id
+    where 1=1
+    <if test="itemId!=null and itemId!=''">
+      and p.item_id=#{itemId}
+    </if>
+    <if test="itemName!=null and itemName!=''">
+      and i.title LIKE CONCAT(CONCAT("%",#{itemName},"%"))
+    </if>
+  </select>
 </mapper>

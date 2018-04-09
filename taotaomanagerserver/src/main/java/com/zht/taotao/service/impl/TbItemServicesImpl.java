@@ -38,13 +38,13 @@ public class TbItemServicesImpl implements TbItemServices{
     }
 
     @Override
-    public EazyUiResult pageTbItemList(int page, int pageSize) {
+    public EazyUiResult pageTbItemList(int page, int pageSize,TbItem tbItem) {
         EazyUiResult eazyUiResult =new EazyUiResult();
         try{
             //设置分页参数
             PageHelper.startPage(page,pageSize);
             //查询商品列表
-            List<TbItem>list=tbItemMapper.selectTbItemList();
+            List<TbItem>list=tbItemMapper.selectTbItemList(tbItem);
             //取出分页参数
             PageInfo<TbItem>pageInfo=new PageInfo<TbItem>(list);
             eazyUiResult.setTotal(pageInfo.getTotal());
@@ -96,6 +96,7 @@ public class TbItemServicesImpl implements TbItemServices{
         tbItemParamItem.setParamData(itemParams);
         tbItemParamItem.setCreated(date);
         tbItemParamItem.setUpdated(date);
+        tbItemParamItemMapper.insert(tbItemParamItem);
         return TaotaoResult.ok();
     }
     /**

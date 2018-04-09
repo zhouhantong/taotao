@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.UnsupportedEncodingException;
+
 /**
  * Created by Administrator on 2018/3/21.
  */
@@ -27,9 +29,18 @@ public class TbItemController {
     }
     @RequestMapping("/list")
     @ResponseBody
-    public EazyUiResult pageTbItemList(Integer page, Integer rows){
-        EazyUiResult eazyUiResult =tbItemServices.pageTbItemList(page,rows);
-        return eazyUiResult;
+    public EazyUiResult pageTbItemList(Integer page, Integer rows,TbItem tbItem){
+        EazyUiResult result= null;
+        try {
+            result = new EazyUiResult();
+            if(tbItem.getTitle()!=null&&tbItem.getTitle()!=""){
+                tbItem.setTitle(new String(tbItem.getTitle().getBytes("iso-8859-1"),"utf-8"));
+            }
+            result =tbItemServices.pageTbItemList(page,rows,tbItem);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     @RequestMapping(value = "/save",method = RequestMethod.POST)

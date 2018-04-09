@@ -160,9 +160,16 @@
       updated = #{updated,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectTbItemList" resultMap="BaseResultMap">
+  <select id="selectTbItemList" resultMap="BaseResultMap" parameterType="com.zht.taotao.pojo.TbItem">
     SELECT
      <include refid="Base_Column_List"/>
     FROM tb_item
+    where 1=1
+    <if test="id!=null and id!=''">
+      and id=#{id}
+    </if>
+    <if test="title!=null and title!=''">
+      and title LIKE concat(concat("%",#{title},"%"))
+    </if>
   </select>
 </mapper>

@@ -1,22 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<input class="easyui-searchbox" prompt="请选择搜索条件并输入搜索内容" style="width:300px;height:25px;" menu="#mm" id="ss" searcher="seachItem">
+<input class="easyui-searchbox" prompt="请输入商品名称或者商品id" style="width:300px;height:25px;" menu="#mm" id="ss" searcher="seachItem">
 <div id="mm" style="width: 100px">
-    <div data-options="name:'title'">商品标题</div>
-    <div data-options="name:'id'">商品Id</div>
+    <div data-options="name:'itemName'">商品名称</div>
+    <div data-options="name:'itemId'">商品Id</div>
 </div>
-<table class="easyui-datagrid" id="itemList" title="商品列表"
-       data-options="singleSelect:false,collapsible:true,pagination:true,url:'/item/list',method:'get',pageSize:30,toolbar:toolbar">
+<table class="easyui-datagrid" id="itemParamItemList" title="商品规格参数列表"
+       data-options="singleSelect:false,collapsible:true,pagination:true,url:'/itemParamItem/list',method:'get',pageSize:30,toolbar:toolbar">
     <thead>
         <tr>
         	<th data-options="field:'ck',checkbox:true"></th>
-        	<th data-options="field:'id',width:60">商品ID</th>
-            <th data-options="field:'title',width:200">商品标题</th>
-            <th data-options="field:'cid',width:100">叶子类目</th>
-            <th data-options="field:'sellPoint',width:100">卖点</th>
-            <th data-options="field:'price',width:70,align:'right',formatter:TAOTAO.formatPrice">价格</th>
-            <th data-options="field:'num',width:70,align:'right'">库存数量</th>
-            <th data-options="field:'barcode',width:100">条形码</th>
-            <th data-options="field:'status',width:60,align:'center',formatter:TAOTAO.formatItemStatus">状态</th>
+        	<th data-options="field:'itemId',width:60">商品ID</th>
+            <th data-options="field:'itemName',width:60">商品名称</th>
+            <th data-options="field:'paramData',width:300,formatter:formatItemParamData">商品规格参数(只显示分组名称)</th>
             <th data-options="field:'created',width:130,align:'center',formatter:TAOTAO.formatDateTime">创建日期</th>
             <th data-options="field:'updated',width:130,align:'center',formatter:TAOTAO.formatDateTime">更新日期</th>
         </tr>
@@ -24,27 +19,38 @@
 </table>
 <div id="itemEditWindow" class="easyui-window" title="编辑商品" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/rest/page/item-edit'" style="width:80%;height:80%;padding:10px;">
 </div>
+<div id="itemParamitemWindow" class="easyui-window" title="商品规格参数" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/item-Param-item'" style="width:80%;height:80%;padding:10px;">
+</div>
 <script>
+
     function seachItem(value,name) {
         console.log(value);
-        $("#itemList").datagrid({
-            url:"/item/list?"+name+"="+encodeURI(value),
-            loadFilter:function (data) {
-                console.log(data)
-                if (data.d){
-                    return data.d;
-                } else {
-                    return data;
+            $("#itemParamItemList").datagrid({
+                url:"/itemParamItem/list?"+name+"="+encodeURI(value),
+                loadFilter:function (data) {
+                    console.log(data)
+                    if (data.d){
+                        return data.d;
+                    } else {
+                        return data;
+                    }
                 }
-            }
-        })
+            })
+    }
+    function formatItemParamData(value , index){
+        var json = JSON.parse(value);
+        var array = [];
+        $.each(json,function(i,e){
+            array.push(e.group);
+        });
+        return array.join(",");
     }
     function getSelectionsIds(){
-    	var itemList = $("#itemList");
+    	var itemList = $("#itemParamItemList");
     	var sels = itemList.datagrid("getSelections");
     	var ids = [];
     	for(var i in sels){
-    		ids.push(sels[i].id);
+    		ids.push(sels[i].itemId);
     	}
     	ids = ids.join(",");
     	return ids;
@@ -54,10 +60,7 @@
         text:'新增',
         iconCls:'icon-add',
         handler:function(){
-        	/*$(".tree-title:contains('新增商品')").parent().click();*/
-            TAOTAO.createWindow({
-                url : "/item-add",
-            });
+        	$(".tree-title:contains('新增商品')").parent().click();
         }
     },{
         text:'编辑',
@@ -149,48 +152,26 @@
         	});
         }
     },'-',{
-        text:'下架',
-        iconCls:'icon-remove',
+        text:'查看规格参数',
+        iconCls:'icon-search',
         handler:function(){
         	var ids = getSelectionsIds();
-        	if(ids.length == 0){
-        		$.messager.alert('提示','未选中商品!');
-        		return ;
-        	}
-        	$.messager.confirm('确认','确定下架ID为 '+ids+' 的商品吗？',function(r){
-        	    if (r){
-        	    	var params = {"ids":ids};
-                	$.post("/rest/item/instock",params, function(data){
-            			if(data.status == 200){
-            				$.messager.alert('提示','下架商品成功!',undefined,function(){
-            					$("#itemList").datagrid("reload");
-            				});
-            			}
-            		});
-        	    }
-        	});
-        }
-    },{
-        text:'上架',
-        iconCls:'icon-remove',
-        handler:function(){
-        	var ids = getSelectionsIds();
-        	if(ids.length == 0){
-        		$.messager.alert('提示','未选中商品!');
-        		return ;
-        	}
-        	$.messager.confirm('确认','确定上架ID为 '+ids+' 的商品吗？',function(r){
-        	    if (r){
-        	    	var params = {"ids":ids};
-                	$.post("/rest/item/reshelf",params, function(data){
-            			if(data.status == 200){
-            				$.messager.alert('提示','上架商品成功!',undefined,function(){
-            					$("#itemList").datagrid("reload");
-            				});
-            			}
-            		});
-        	    }
-        	});
+            if(ids.length == 0){
+                $.messager.alert('提示','必须选择一个商品才能查看!');
+                return ;
+            }
+            if(ids.indexOf(',') > 0){
+                $.messager.alert('提示','只能选择一个商品!');
+                return ;
+            }
+            console.log(ids);
+            $("#itemParamitemWindow").window({
+                onLoad:function () {
+                    $.post("/itemParamItem/showItemParamItem/" + ids, function (data) {
+                        $("#itemParamitem").html(data);
+                    });
+                }
+        }).window("open");
         }
     }];
 </script>

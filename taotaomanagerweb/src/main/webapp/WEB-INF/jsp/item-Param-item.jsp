@@ -35,14 +35,6 @@
             margin-left: 210px;
         }
     </style>
-    <script type="application/javascript">
-    $(function () {
-        $.post("showItemParamItem/48",function (data) {
-            $("#itemParamitem").html(data);
-        }
-        )
-    });
-    </script>
 <div id="itemParamitem">
-${itemParam}
+    ${itemParam}
 </div>

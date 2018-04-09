@@ -18,5 +18,5 @@ public interface TbItemMapper {
 
     int updateByPrimaryKey(TbItem record);
 
-    List<TbItem> selectTbItemList();
+    List<TbItem> selectTbItemList(TbItem tbItem);
 }

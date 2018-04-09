@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<table class="easyui-datagrid" id="itemParamList" title="商品列表" 
+<table class="easyui-datagrid" id="itemParamList" title="商品类别规格参数列表"
        data-options="singleSelect:false,collapsible:true,pagination:true,url:'/item/param/list',method:'get',pageSize:30,toolbar:itemParamListToolbar">
     <thead>
         <tr>
@@ -42,8 +42,8 @@
         iconCls:'icon-add',
         handler:function(){
         	TAOTAO.createWindow({
-        		url : "/item-param-add",
-        	});
+                url : "/item-param-add",
+            });
         }
     },{
         text:'编辑',

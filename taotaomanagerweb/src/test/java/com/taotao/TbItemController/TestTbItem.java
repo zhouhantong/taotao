@@ -26,7 +26,8 @@ public class TestTbItem {
         //使用PageHelper插件设置当前页和每页显示的记录数
         PageHelper.startPage(2,5);
         //查询商品列表
-        List<TbItem>list=tbItemMapper.selectTbItemList();
+        TbItem tbItem=null;
+        List<TbItem>list=tbItemMapper.selectTbItemList(tbItem);
         //遍历商品列表
         for (TbItem tb:list) {
             System.out.println(tb.getTitle());
