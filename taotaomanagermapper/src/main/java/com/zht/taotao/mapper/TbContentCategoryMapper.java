@@ -1,7 +1,11 @@
 package com.zht.taotao.mapper;
 
 import com.zht.taotao.pojo.TbContentCategory;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+@Repository
 public interface TbContentCategoryMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -14,4 +18,6 @@ public interface TbContentCategoryMapper {
     int updateByPrimaryKeySelective(TbContentCategory record);
 
     int updateByPrimaryKey(TbContentCategory record);
+
+    List<TbContentCategory>getContentCategoryList(long parentId);
 }

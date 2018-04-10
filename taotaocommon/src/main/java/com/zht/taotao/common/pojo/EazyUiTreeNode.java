@@ -2,10 +2,14 @@ package com.zht.taotao.common.pojo;
 
 /**
  * Created by Administrator on 2018/3/22.
+ * EazyUi树形属性封装
  */
 public class EazyUiTreeNode {
+    /**节点id*/
     private long id;
+    /**节点名称*/
     private String text;
+    /**节点状态：closed(关闭)、open(打开)*/
     private String state;
 
     public long getId() {

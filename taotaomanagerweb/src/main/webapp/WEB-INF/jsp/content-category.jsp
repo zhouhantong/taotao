@@ -29,6 +29,7 @@ $(function(){
         		// 新增节点
         		$.post("/content/category/create",{parentId:node.parentId,name:node.text},function(data){
         			if(data.status == 200){
+        			    console.log(data)
         				_tree.tree("update",{
             				target : node.target,
             				id : data.data.id
@@ -36,7 +37,7 @@ $(function(){
         			}else{
         				$.messager.alert('提示','创建'+node.text+' 分类失败!');
         			}
-        		});
+        		},"json");
         	}else{
         		$.post("/content/category/update",{id:node.id,name:node.text});
         	}

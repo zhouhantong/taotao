@@ -25,6 +25,9 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.zht.taotao.pojo.TbContentCategory" >
+    <selectKey keyProperty="id" resultType="Long" order="AFTER">
+      SELECT  LAST_INSERT_ID()
+    </selectKey>
     insert into tb_content_category (id, parent_id, name, 
       status, sort_order, is_parent, 
       created, updated)
@@ -33,6 +36,10 @@
       #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.zht.taotao.pojo.TbContentCategory" >
+    /*主键返回策略*/
+    <selectKey keyProperty="id" resultType="Long" order="AFTER">
+      SELECT  LAST_INSERT_ID()
+    </selectKey>
     insert into tb_content_category
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -125,4 +132,7 @@
       updated = #{updated,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <select id="getContentCategoryList" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    SELECT * FROM tb_content_category WHERE parent_id=#{parentId}
+  </select>
 </mapper>

@@ -1,7 +1,11 @@
 package com.zht.taotao.mapper;
 
 import com.zht.taotao.pojo.TbContent;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+@Repository
 public interface TbContentMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -16,4 +20,8 @@ public interface TbContentMapper {
     int updateByPrimaryKeyWithBLOBs(TbContent record);
 
     int updateByPrimaryKey(TbContent record);
+
+    List<TbContent> findContentListSeach(TbContent tbContent);
+
+    int deleteContentBatch(long[]ids);
 }

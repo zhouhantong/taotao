@@ -72,7 +72,7 @@
     					$("#contentList").datagrid("reload");
     					TT.closeCurrentWindow();
 					}
-				});
+				},"json");
 			},
 			clearForm : function(){
 				$('#contentAddForm').form('reset');

@@ -100,7 +100,7 @@ var contentListToolbar = [{
         					$("#contentList").datagrid("reload");
         				});
         			}
-        		});
+        		},"json");
     	    }
     	});
     }
