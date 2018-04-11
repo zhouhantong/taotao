@@ -24,5 +24,7 @@ public interface TbItemParamMapper {
 
     List<TbItemParamMap> selectItemParamList();
 
+    int deleteTbItemParamList(long[]ids);
+
     TbItemParam selectItemParamByCid(Long cid);
 }

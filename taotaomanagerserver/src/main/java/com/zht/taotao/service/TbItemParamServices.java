@@ -18,5 +18,5 @@ public interface TbItemParamServices {
 
     TaotaoResult updateTbItemParam(TbItemParam tbItemParam) throws Exception;
 
-    TaotaoResult deleteTbItemParam(long id) throws Exception;
+    TaotaoResult deleteTbItemParam(long[] ids) throws Exception;
 }

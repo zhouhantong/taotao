@@ -77,8 +77,8 @@ public class TbItemParamServicesImpl implements TbItemParamServices{
     }
 
     @Override
-    public TaotaoResult deleteTbItemParam(long id) throws Exception {
-        int n=tbItemParamMapper.deleteByPrimaryKey(id);
+    public TaotaoResult deleteTbItemParam(long[] ids) throws Exception {
+        int n=tbItemParamMapper.deleteTbItemParamList(ids);
         if(n<0){
             throw new Exception();
         }

@@ -53,8 +53,8 @@ public class TbItemParamController {
     }
     @RequestMapping("/delete")
     @ResponseBody
-    public TaotaoResult deleteTbItemParam(@RequestParam("ids") long id)throws Exception{
-        TaotaoResult result=tbItemParamServices.deleteTbItemParam(id);
+    public TaotaoResult deleteTbItemParam(long[]ids)throws Exception{
+        TaotaoResult result=tbItemParamServices.deleteTbItemParam(ids);
         return result;
     }
 }
