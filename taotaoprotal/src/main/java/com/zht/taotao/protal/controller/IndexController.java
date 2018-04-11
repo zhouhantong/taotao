@@ -1,7 +1,11 @@
 package com.zht.taotao.protal.controller;
 
+import com.zht.taotao.common.util.TaotaoResult;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by zhouhantong on 2018/4/9.
@@ -13,5 +17,14 @@ public class IndexController {
     @RequestMapping("/index")
     public String showIndex(){
         return "index";
+    }
+
+    @RequestMapping(value = "/httpClient/post",method = RequestMethod.POST)
+    @ResponseBody
+    public TaotaoResult testHttoClientPost(String username,String password){
+        Map<String,String>map=new HashMap<>();
+        map.put("username",username);
+        map.put("password",password);
+        return TaotaoResult.ok(map);
     }
 }
