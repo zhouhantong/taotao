@@ -14,6 +14,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.junit.Test;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -70,6 +71,22 @@ public class HttpClientTest {
         httpClient.close();
     }
     /**
+     * 不带参的post请求
+     */
+    @Test
+    public void doPost()throws Exception{
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        //创建post对象
+        HttpPost post=new HttpPost("http://localhost:8082/httpClient/post.html");
+        //执行post请求
+        CloseableHttpResponse response = httpClient.execute(post);
+        HttpEntity entity = response.getEntity();
+        String s=EntityUtils.toString(entity);
+        System.out.println(s);
+        response.close();
+        httpClient.close();
+    }
+    /**
      * 带参post请求
      */
     @Test
@@ -78,7 +95,7 @@ public class HttpClientTest {
         //创建post对象
         HttpPost post=new HttpPost("http://localhost:8082/httpClient/post.html");
         //模拟表单
-        /*Map<String,String>map=new HashMap<>();
+      /*  Map<String,String>map=new HashMap<>();
         map.put("username","张三");
         map.put("password","123456");
         String param = JsonUtils.objectToJson(map);

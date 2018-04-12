@@ -1,7 +1,10 @@
 package com.zht.taotao.protal.controller;
 
 import com.zht.taotao.common.util.TaotaoResult;
+import com.zht.taotao.protal.service.ContentServices;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -14,8 +17,12 @@ import java.util.Map;
  */
 @Controller
 public class IndexController {
+    @Autowired
+    private ContentServices contentServices;
     @RequestMapping("/index")
-    public String showIndex(){
+    public String showIndex(Model model){
+        String json = contentServices.getContentList();
+        model.addAttribute("ad1",json);
         return "index";
     }
 
