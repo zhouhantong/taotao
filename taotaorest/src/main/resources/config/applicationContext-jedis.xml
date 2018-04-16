@@ -34,14 +34,14 @@
 		<property name="blockWhenExhausted" value="false"/>
 	</bean>
 	<!--jedis客户端单机版-->
-<!--	<bean id="redisClient" class="redis.clients.jedis.JedisPool">
+	<bean id="redisClient" class="redis.clients.jedis.JedisPool">
 		<constructor-arg name="host" value="${jedis.host}"/>
 		<constructor-arg name="port" value="${jedis.port}"/>
 		<constructor-arg name="poolConfig" ref="jedisPoolConfig"/>
-	</bean>-->
-
+	</bean>
+	<bean id="jedisClientSingle" class="com.zht.taotao.rest.dao.impl.JedisClientSingle"/>
 	<!--jedis集群版配置-->
-	<bean id="redisClient" class="redis.clients.jedis.JedisCluster">
+	<!--<bean id="redisClient" class="redis.clients.jedis.JedisCluster">
 		<constructor-arg name="nodes">
 			<set>
 				<bean class="redis.clients.jedis.HostAndPort">
@@ -67,11 +67,12 @@
 				<bean class="redis.clients.jedis.HostAndPort">
 					<constructor-arg name="host" value="${redis.host}"/>
 					<constructor-arg name="port" value="${redis6.port}"/>
-				</bean>
+				</bean>k
 			</set>
 		</constructor-arg>
 		<constructor-arg name="poolConfig" ref="jedisPoolConfig"/>
 	</bean>
+	<bean id="jedisClientCluster" class="com.zht.taotao.rest.dao.impl.JedisClientCluster"/>-->
 </beans>
 
 

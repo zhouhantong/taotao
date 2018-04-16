@@ -1,11 +1,15 @@
 package com.zht.taotao.rest.service.impl;
 
+import com.zht.taotao.common.util.JsonUtils;
 import com.zht.taotao.mapper.TbItemCatMapper;
 import com.zht.taotao.pojo.TbItemCat;
+import com.zht.taotao.rest.dao.JedisClient;
 import com.zht.taotao.rest.pojo.CatNode;
 import com.zht.taotao.rest.pojo.CatResult;
 import com.zht.taotao.rest.service.ItemCatServices;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,6 +24,10 @@ import java.util.List;
 public class ItemCatServicesImpl implements ItemCatServices{
     @Autowired
     private TbItemCatMapper itemCatMapper;
+    @Autowired
+    private JedisClient jedisClient;
+    @Value("${INDEX_ITEMCAT_REDIS_KEY}")
+    private String INDEX_ITEMCAT_REDIS_KEY;
     @Override
     public CatResult findItemCatList() {
         CatResult result=new CatResult();
@@ -33,8 +41,26 @@ public class ItemCatServicesImpl implements ItemCatServices{
      * @return
      */
     private List getCatList(long parentId){
-        List result=new ArrayList();
-       List<TbItemCat>list= itemCatMapper.selectTbItemCatByParentId(parentId);
+
+        List result= new ArrayList();
+        List<TbItemCat>list=new ArrayList<>();
+        try{
+            String hget = jedisClient.hget(INDEX_ITEMCAT_REDIS_KEY, parentId + "");
+            if(StringUtils.isNotBlank(hget)){
+                list=JsonUtils.jsonToList(hget,TbItemCat.class);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        if(list.size()==0){
+            list = itemCatMapper.selectTbItemCatByParentId(parentId);
+            try {
+                String res = JsonUtils.objectToJson(list);
+                jedisClient.hset(INDEX_ITEMCAT_REDIS_KEY,parentId+"",res);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
        int count=0;
         for (TbItemCat cat:list) {
             //判断是否为父节点

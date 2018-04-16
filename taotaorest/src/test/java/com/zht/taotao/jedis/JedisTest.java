@@ -1,6 +1,9 @@
 package com.zht.taotao.jedis;
 
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.web.context.support.XmlWebApplicationContext;
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisCluster;
@@ -59,5 +62,20 @@ public class JedisTest {
         String name = cluster.get("name");
         System.out.println(name);
         cluster.close();
+    }
+
+    /**
+     * 整合spring测试
+     */
+    @Test
+    public void testSpringOrJedis(){
+        String[]path={"classpath:config/applicationContext-jedis.xml"};
+        ApplicationContext context=new ClassPathXmlApplicationContext(path);
+       JedisPool pool= (JedisPool) context.getBean("redisClient");
+        Jedis resource = pool.getResource();
+        String a = resource.get("a");
+        System.out.println(a);
+        pool.close();
+        resource.close();
     }
 }
