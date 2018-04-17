@@ -63,6 +63,7 @@ public class FtpComUtil {
             //解决上传文件中文乱码问题
             //String newFileName=new String(fileName.getBytes("GBK"),"ISO-8859-1");
             //设置上传文件的类型
+            ftpClient.enterLocalPassiveMode();
             ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
             if(!ftpClient.storeFile(fileName,stream)){
                 return result;

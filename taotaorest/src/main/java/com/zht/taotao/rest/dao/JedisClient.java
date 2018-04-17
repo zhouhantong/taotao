@@ -13,4 +13,6 @@ public interface JedisClient {
     long incr(String key);
     long expire(String key ,int secend);
     long ttl(String key);
+    long del(String key);
+    long hdel(String key,String field);
 }

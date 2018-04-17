@@ -1197,11 +1197,65 @@ var category = {OBJ: $("#_JD_ALLSORT"),
                 b = '<div class="categorys-links" id="categorys-links-jzc" ' + e + '><a href="http://channel.jd.com/jiazhuang.html" target="_blank">\u5bb6\u88c5\u57ce</a></div>'
         }
         return b
-    },DATA_Simple: {1: [{l: "http://book.jd.com/",n: "\u56fe\u4e66"}, {l: "http://mvd.jd.com/",n: "\u97f3\u50cf"}, {l: "http://e.jd.com/",n: "\u6570\u5b57\u5546\u54c1"}],2: [{l: "http://channel.jd.com/electronic.html",n: "\u5bb6\u7528\u7535\u5668"}],3: [{l: "http://shouji.jd.com/",n: "\u624b\u673a"}, {l: "http://channel.jd.com/digital.html",n: "\u6570\u7801"}, {l: "http://mobile.jd.com/index.do",n: "\u4eac\u4e1c\u901a\u4fe1"}],4: [{l: "http://channel.jd.com/computer.html",n: "\u7535\u8111\u3001\u529e\u516c"}],5: [{l: "http://channel.jd.com/home.html",n: "\u5bb6\u5c45"}, {l: "http://channel.jd.com/furniture.html",n: "\u5bb6\u5177"}, {l: "http://channel.jd.com/decoration.html",n: "\u5bb6\u88c5"}, {l: "http://channel.jd.com/kitchenware.html",n: "\u53a8\u5177"}],6: [{l: "http://channel.jd.com/1315-1342.html",n: "\u7537\u88c5"}, {l: "http://channel.jd.com/1315-1343.html",n: "\u5973\u88c5"}, {l: "http://channel.jd.com/1315-1345.html",n: "\u5185\u8863"}, {l: "http://channel.jd.com/jewellery.html",n: "\u73e0\u5b9d"}],7: [{l: "http://channel.jd.com/beauty.html",n: "\u4e2a\u62a4\u5316\u5986"}],8: [{l: "http://channel.jd.com/shoes.html",n: "\u978b\u9774"}, {l: "http://channel.jd.com/bag.html",n: "\u7bb1\u5305"}, {l: "http://channel.jd.com/watch.html",n: "\u949f\u8868"}, {l: "http://channel.jd.com/1672-2615.html",n: "\u5962\u4f88\u54c1"}],9: [{l: "http://channel.jd.com/sports.html",n: "\u8fd0\u52a8\u6237\u5916"}],10: [{l: "http://channel.jd.com/auto.html",n: "\u6c7d\u8f66\u7528\u54c1"}],11: [{l: "http://channel.jd.com/baby.html",n: "\u6bcd\u5a74"}, {l: "http://channel.jd.com/toys.html",n: "\u73a9\u5177\u4e50\u5668"}],12: [{l: "http://channel.jd.com/food.html",n: "\u98df\u54c1\u996e\u6599"}, {l: "http://channel.jd.com/wine.html",n: "\u9152\u7c7b"}, {l: "http://channel.jd.com/freshfood.html",n: "\u751f\u9c9c"}],13: [{l: "http://channel.jd.com/health.html",n: "\u8425\u517b\u4fdd\u5065"}],14: [{l: "http://caipiao.jd.com/",n: "\u5f69\u7968"}, {l: "http://trip.jd.com/",n: "\u65c5\u884c"}, {l: "http://chongzhi.jd.com/",n: "\u5145\u503c"}, {l: "http://piao.jd.com/",n: "\u7968\u52a1"}]},TPL_Simple: '{for item in data}<div class="item fore${parseInt(item_index)}">    <span data-split="1" {if pageConfig.isHome} clstag="homepage|keycount|home2013|06{if parseInt(item_index)+1>9}${parseInt(item_index)+1}{else}0${parseInt(item_index)+1}{/if}a"{/if}>        <h3>{for sItem in item}{if sItem_index!=0}\u3001{/if}<a href="${sItem.l}">${sItem.n}</a>{/for}</h3>        <s></s>    </span></div>{/for}<div class="extra"><a href="http://www.jd.com/allSort.aspx">\u5168\u90e8\u5546\u54c1\u5206\u7c7b</a></div>',FN_InitSimple: function() {
-       /* var a, b = {}, c = $("#categorys-2013");
-        b.data = this.DATA_Simple, c.addClass("categorys-2014"), a = this.TPL_Simple.process(b);
-        var d = $("#_JD_ALLSORT");
-        d.html(a), $.bigiframe(d)*/
+    },
+    DATA_Simple: {
+        1: [{l: "http://book.jd.com/", n: "\u56fe\u4e66"}, {
+            l: "http://mvd.jd.com/",
+            n: "\u97f3\u50cf"
+        }, {l: "http://e.jd.com/", n: "\u6570\u5b57\u5546\u54c1"}],
+        2: [{l: "http://channel.jd.com/electronic.html", n: "\u5bb6\u7528\u7535\u5668"}],
+        3: [{l: "http://shouji.jd.com/", n: "\u624b\u673a"}, {
+            l: "http://channel.jd.com/digital.html",
+            n: "\u6570\u7801"
+        }, {l: "http://mobile.jd.com/index.do", n: "\u4eac\u4e1c\u901a\u4fe1"}],
+        4: [{l: "http://channel.jd.com/computer.html", n: "\u7535\u8111\u3001\u529e\u516c"}],
+        5: [{l: "http://channel.jd.com/home.html", n: "\u5bb6\u5c45"}, {
+            l: "http://channel.jd.com/furniture.html",
+            n: "\u5bb6\u5177"
+        }, {
+            l: "http://channel.jd.com/decoration.html",
+            n: "\u5bb6\u88c5"
+        }, {l: "http://channel.jd.com/kitchenware.html", n: "\u53a8\u5177"}],
+        6: [{l: "http://channel.jd.com/1315-1342.html", n: "\u7537\u88c5"}, {
+            l: "http://channel.jd.com/1315-1343.html",
+            n: "\u5973\u88c5"
+        }, {l: "http://channel.jd.com/1315-1345.html", n: "\u5185\u8863"}, {
+            l: "http://channel.jd.com/jewellery.html",
+            n: "\u73e0\u5b9d"
+        }],
+        7: [{l: "http://channel.jd.com/beauty.html", n: "\u4e2a\u62a4\u5316\u5986"}],
+        8: [{l: "http://channel.jd.com/shoes.html", n: "\u978b\u9774"}, {
+            l: "http://channel.jd.com/bag.html",
+            n: "\u7bb1\u5305"
+        }, {l: "http://channel.jd.com/watch.html", n: "\u949f\u8868"}, {
+            l: "http://channel.jd.com/1672-2615.html",
+            n: "\u5962\u4f88\u54c1"
+        }],
+        9: [{l: "http://channel.jd.com/sports.html", n: "\u8fd0\u52a8\u6237\u5916"}],
+        10: [{l: "http://channel.jd.com/auto.html", n: "\u6c7d\u8f66\u7528\u54c1"}],
+        11: [{l: "http://channel.jd.com/baby.html", n: "\u6bcd\u5a74"}, {
+            l: "http://channel.jd.com/toys.html",
+            n: "\u73a9\u5177\u4e50\u5668"
+        }],
+        12: [{
+            l: "http://channel.jd.com/food.html",
+            n: "\u98df\u54c1\u996e\u6599"
+        }, {l: "http://channel.jd.com/wine.html", n: "\u9152\u7c7b"}, {
+            l: "http://channel.jd.com/freshfood.html",
+            n: "\u751f\u9c9c"
+        }],
+        13: [{l: "http://channel.jd.com/health.html", n: "\u8425\u517b\u4fdd\u5065"}],
+        14: [{l: "http://caipiao.jd.com/", n: "\u5f69\u7968"}, {
+            l: "http://trip.jd.com/",
+            n: "\u65c5\u884c"
+        }, {l: "http://chongzhi.jd.com/", n: "\u5145\u503c"}, {l: "http://piao.jd.com/", n: "\u7968\u52a1"}]
+    },
+    TPL_Simple: '{for item in data}<div class="item fore${parseInt(item_index)}">    <span data-split="1" {if pageConfig.isHome} clstag="homepage|keycount|home2013|06{if parseInt(item_index)+1>9}${parseInt(item_index)+1}{else}0${parseInt(item_index)+1}{/if}a"{/if}>        <h3>{for sItem in item}{if sItem_index!=0}\u3001{/if}<a href="${sItem.l}">${sItem.n}</a>{/for}</h3>        <s></s>    </span></div>{/for}<div class="extra"><a href="http://www.jd.com/allSort.aspx">\u5168\u90e8\u5546\u54c1\u5206\u7c7b</a></div>',
+    FN_InitSimple: function () {
+        /* var a, b = {}, c = $("#categorys-2013");
+         b.data = this.DATA_Simple, c.addClass("categorys-2014"), a = this.TPL_Simple.process(b);
+         var d = $("#_JD_ALLSORT");
+         d.html(a), $.bigiframe(d)*/
     },FN_GetData: function() {
     	//使用jsonp来实现跨域请求
         $.getJSONP(this.URL_Serv, category.getDataService);
@@ -1252,10 +1306,13 @@ var category = {OBJ: $("#_JD_ALLSORT"),
             pageConfig.isHome && ($(this).find(".categorys-promotions").attr("clstag", "homepage|keycount|home2013|0" + (601 + a) + "c"), $(this).find(".categorys-brands").attr("clstag", "homepage|keycount|home2013|0" + (601 + a) + "d"))
         })
     },FN_Init: function() {
+            console.log(this.OBJ)
         if (this.OBJ.length) {
-            this.OBJ.attr("load") || (window.pageConfig && 0 != window.pageConfig.pageId && this.FN_InitSimple(), $("#categorys").length ? $("#categorys").Jdropdown({delay: 200}) : $("#categorys-2013").Jdropdown({delay: 200}));
+            //$.getJSONP("http://localhost:8081/rest/itemcat/list?callBack=category.getDataService",category.getDataService);
+           // this.OBJ.attr("load") || (window.pageConfig && 0 != window.pageConfig.pageId && this.FN_InitSimple(), $("#categorys").length ? $("#categorys").Jdropdown({delay: 200}) : $("#categorys-2013").Jdropdown({delay: 200}));
             var a = this;
-            this.OBJ.one("mouseover", function() {
+            a.FN_GetData();
+           /* this.OBJ.one("mouseover", function() {
                 var b = a.OBJ.attr("load");
                 if (b) {
                     if (1 != b)
@@ -1263,7 +1320,7 @@ var category = {OBJ: $("#_JD_ALLSORT"),
                     a.FN_GetBrands()
                 } else
                     a.FN_GetData()
-            })
+            })*/
         }
     }}, UC = {DATA_Cookie: "aview",TPL_UnRegist: '<div class="prompt">            <span class="fl">\u60a8\u597d\uff0c\u8bf7<a href="javascript:login()" clstag="homepage|keycount|home2013|04a">\u767b\u5f55</a></span>            <span class="fr"></span>        </div>',TPL_Regist: '<div class="prompt">                <span class="fl"><strong>${Name}</strong></span>                <span class="fr"><a href="http://home.jd.com/">\u53bb\u6211\u7684\u4eac\u4e1c\u9996\u9875&nbsp;&gt;</a></span>            </div>',TPL_OList: {placeholder: '<div id="jduc-orderlist"></div>',fragment: '<div class="orderlist">                <div class="smt">                    <h4>\u6700\u65b0\u8ba2\u5355\u72b6\u6001\uff1a</h4>                    <div class="extra"><a href="http://order.jd.com/center/list.action" target="_blank">\u67e5\u770b\u6240\u6709\u8ba2\u5355&nbsp;&gt;</a></div>                </div>                <div class="smc">                    <ul>                        {for item in orderList}                        <li class="fore${parseInt(item_index)+1}">                            <div class="p-img fl">                                {for image in item.OrderDetail}                                    {if image_index<2}                                        <a href="http://www.jd.com/product/${image.ProductId}.html" target="_blank"><img src="${pageConfig.FN_GetImageDomain(image.ProductId)}n5/${image.ImgUrl}" width="50" height="50" alt="${image.ProductName}" /></a>                                    {/if}                                {/for}                                {if item.OrderDetail.length>2}                                    <a href="${item.passKeyUrl}" target="_blank" class="more">\u66f4\u591a</a>                                {/if}                            </div>                            <div class="p-detail fr">                                \u8ba2\u5355\u53f7\uff1a${item.OrderId}<br />                                \u72b6\u3000\u6001\uff1a<span>${UC.FN_SetState(item.OrderState)}</span><br />                                \u3000\u3000\u3000\u3000<a href="${item.passKeyUrl}">\u67e5\u770b\u8be6\u60c5</a>                            </div>                        </li>                        {/for}                    </ul>                </div>            </div>'},TPL_UList: '<div class="uclist">                <ul class="fore1 fl">                    <li><a target="_blank" clstag="homepage|keycount|home2013|04b" href="http://order.jd.com/center/list.action">\u5f85\u5904\u7406\u8ba2\u5355<span id="num-unfinishedorder"></span></a></li>                    <li><a target="_blank" clstag="homepage|keycount|home2013|04c" href="http://jd2008.jd.com/user_spzx.aspx">\u54a8\u8be2\u56de\u590d<span id="num-consultation"></span></a></li>                    <li><a target="_blank" clstag="homepage|keycount|home2013|04d" href="http://t.jd.com/product/followProductList.action?isReduce=true">\u964d\u4ef7\u5546\u54c1<span id="num-reduction"></span></a></li>                    <li><a target="_blank" clstag="homepage|keycount|home2013|shouhou" href="http://myjd.jd.com/repair/orderlist.action">\u8fd4\u4fee\u9000\u6362\u8d27</a></li>                    <li><a target="_blank" clstag="homepage|keycount|home2013|04e" href="http://quan.jd.com/user_quan.action">\u4f18\u60e0\u5238<span id="num-ticket"></span></a></li>                </ul>                <ul class="fore2 fl">                    <li><a target="_blank" clstag="homepage|keycount|home2013|04i" href="http://t.jd.com/home/follow">\u6211\u7684\u5173\u6ce8&nbsp;&gt;</a></li>                    <li><a target="_blank" clstag="homepage|keycount|home2013|04g" href="http://bean.jd.com/myJingBean/list">\u6211\u7684\u4eac\u8c46&nbsp;&gt;</a></li>                    <li><a target="_blank" clstag="homepage|keycount|home2013|licai" href="http://trade.jr.jd.com/centre/browse.action">\u6211\u7684\u7406\u8d22&nbsp;&gt;</a></li>                    <li><a target="_blank" clstag="homepage|keycount|home2013|baitiao" href="http://baitiao.jd.com/creditUser/list">\u6211\u7684\u767d\u6761&nbsp;&gt;</a></li>                </ul>            </div>',TPL_VList: {placeholder: '<div class="viewlist">                <div class="smt" clstag="homepage|keycount|home2013|04k">                    <h4>\u6700\u8fd1\u6d4f\u89c8\u7684\u5546\u54c1\uff1a</h4>                    <div style="float:right;padding-right:9px;"><a style="border:0;color:#005EA7" href="http://my.jd.com/history/list.html" target="_blank">\u67e5\u770b\u6d4f\u89c8\u5386\u53f2&nbsp;&gt;</a></div>                </div>                <div class="smc" id="jduc-viewlist" clstag="homepage|keycount|home2013|04j">                    <div class="loading-style1"><b></b>\u52a0\u8f7d\u4e2d\uff0c\u8bf7\u7a0d\u5019...</div>                    <ul class="lh hide"></ul>                </div>            </div>',fragment: '{for item in list}<li><a href="http://item.jd.com/${item.wid}.html" target="_blank" title="${item.wname}"><img src="${pageConfig.FN_GetImageDomain(item.wid)}n5/${item.imgUrl}" width="50" height="50" alt="${item.wname}" /></a></li>{/for}'},FN_SetState: function(a) {
         var a = a;

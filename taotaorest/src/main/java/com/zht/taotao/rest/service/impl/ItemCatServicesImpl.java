@@ -48,6 +48,7 @@ public class ItemCatServicesImpl implements ItemCatServices{
             String hget = jedisClient.hget(INDEX_ITEMCAT_REDIS_KEY, parentId + "");
             if(StringUtils.isNotBlank(hget)){
                 list=JsonUtils.jsonToList(hget,TbItemCat.class);
+                System.out.println("redis缓存"+hget);
             }
         }catch (Exception e){
             e.printStackTrace();
