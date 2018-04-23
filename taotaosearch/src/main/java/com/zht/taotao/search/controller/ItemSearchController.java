@@ -32,6 +32,7 @@ public class ItemSearchController {
     public TaotaoResult itemSearchQueryList(@RequestParam("q") String queryString,
                                             @RequestParam(defaultValue = "1") Integer page,
                                             @RequestParam(defaultValue = "60") Integer rows){
+
         if(StringUtils.isBlank(queryString)){
             return TaotaoResult.build(400,"查询条件不能为空");
         }
