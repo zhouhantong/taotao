@@ -24,6 +24,7 @@ public class TbItemController {
     @ResponseBody
     public TbItem selectTbItemById(@PathVariable Long itemId){
         TbItem tbItem=tbItemServices.selectTbTtemById(itemId);
+
         return tbItem;
     }
     @RequestMapping("/list")
