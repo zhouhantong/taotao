@@ -31,10 +31,10 @@
             <groupId>com.github.miemiedev</groupId>
             <artifactId>mybatis-paginator</artifactId>
         </dependency>
-        <!--<dependency>
+        <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper</artifactId>
-        </dependency>-->
+        </dependency>
         <!-- MySql -->
         <dependency>
             <groupId>mysql</groupId>
@@ -44,6 +44,11 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
+        </dependency>
+        <!--spring注解-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
         </dependency>
     </dependencies>
 

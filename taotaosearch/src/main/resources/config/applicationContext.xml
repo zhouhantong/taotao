@@ -1,0 +1,69 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+	<context:property-placeholder location="classpath:config/*.properties"/>
+	<!--整合mybatis-->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		  p:driverClassName="${jdbc.driverClassName}"
+		  p:url="${jdbc.url}"
+		  p:username="${jdbc.username}"
+		  p:password="${jdbc.password}"
+		  p:minIdle="${jdbc.minIdle}"
+		  p:maxActive="${jdbc.maxActive}"
+	/>
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="mapperLocations" value="classpath*:mapper/*Mapper.xml"/>
+		<!--配置分页插件PageHelper-->
+		<property name="plugins">
+			<array>
+				<bean class="com.github.pagehelper.PageHelper">
+					<property name="properties">
+						<value>
+							dialect=mysql
+							reasonable=true
+						</value>
+					</property>
+				</bean>
+			</array>
+		</property>
+	</bean>
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+		  p:sqlSessionFactoryBeanName="sqlSessionFactory"
+		  p:basePackage="com.zht.taotao.mapper,com.zht.taotao.search.mapper"
+	/>
+	<!--mybatis end-->
+	<!--注解扫描包-->
+	<context:component-scan base-package="com.zht.taotao.search.pojo,com.zht.taotao.search.mapper,com.zht.taotao.search.service,com.zht.taotao.search.dao"/>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

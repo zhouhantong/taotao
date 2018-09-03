@@ -14,14 +14,13 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="taotao" target="1.7" />
-      <module name="taotao-parent" target="1.7" />
-      <module name="taotaocommon" target="1.7" />
-      <module name="taotaomanager" target="1.7" />
-      <module name="taotaomanagermapper" target="1.7" />
-      <module name="taotaomanagerpojo" target="1.7" />
-      <module name="taotaomanagerserver" target="1.7" />
-      <module name="taotaomanagerweb" target="1.7" />
+      <module name="taotao-parent" target="1.8" />
+      <module name="taotaocommon" target="1.8" />
+      <module name="taotaomanager" target="1.8" />
+      <module name="taotaomanagermapper" target="1.8" />
+      <module name="taotaomanagerpojo" target="1.8" />
+      <module name="taotaomanagerserver" target="1.8" />
+      <module name="taotaomanagerweb" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
