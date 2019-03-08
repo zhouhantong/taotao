@@ -3,6 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/taotao-parent.iml" filepath="$PROJECT_DIR$/taotao-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/taotaoprotal/taotao-protal.iml" filepath="$PROJECT_DIR$/taotaoprotal/taotao-protal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/taotaorest/taotao-rest.iml" filepath="$PROJECT_DIR$/taotaorest/taotao-rest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/taotaosearch/taotao-search.iml" filepath="$PROJECT_DIR$/taotaosearch/taotao-search.iml" />
       <module fileurl="file://$PROJECT_DIR$/taotaocommon/taotaocommon.iml" filepath="$PROJECT_DIR$/taotaocommon/taotaocommon.iml" />
       <module fileurl="file://$PROJECT_DIR$/taotaomanager/taotaomanager.iml" filepath="$PROJECT_DIR$/taotaomanager/taotaomanager.iml" />
       <module fileurl="file://$PROJECT_DIR$/taotaomanagermapper/taotaomanagermapper.iml" filepath="$PROJECT_DIR$/taotaomanagermapper/taotaomanagermapper.iml" />

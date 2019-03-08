@@ -20,7 +20,16 @@
 		  p:username="${jdbc.username}"
 		  p:password="${jdbc.password}"
 		  p:minIdle="${jdbc.minIdle}"
+		  p:testWhileIdle="${jdbc.testWhileIdle}"
+		  p:validationQuery="${jdbc.validationQuery}"
 		  p:maxActive="${jdbc.maxActive}"
+		  p:testOnBorrow="${jdbc.testOnBorrow}"
+		  p:testOnReturn="${jdbc.testOnReturn}"
+		  p:timeBetweenEvictionRunsMillis="${jdbc.timeBetweenEvictionRunsMillis}"
+		  p:poolPreparedStatements="${jdbc.poolPreparedStatements}"
+		  p:maxPoolPreparedStatementPerConnectionSize="${jdbc.maxPoolPreparedStatementPerConnectionSize}"
+		  p:maxWait="${jdbc.maxWait}"
+		  p:minEvictableIdleTimeMillis="${jdbc.minEvictableIdleTimeMillis}"
 	/>
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
@@ -46,6 +55,8 @@
 	<!--mybatis end-->
 	<!--注解扫描包-->
 	<context:component-scan base-package="com.zht.taotao.pojo,com.zht.taotao.mapper,com.zht.taotao.service"/>
+	<!--使用注解自动生成代理对象，用于aop的注解-->
+	<aop:aspectj-autoproxy/>
 	<!--整合redis-->
 
 	<!--<bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig"
@@ -112,6 +123,7 @@
 		<!--把事务控制在service层-->
 		<aop:pointcut id="pc" expression="execution(public * com.zht.taotao.service.*.*(..))"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="pc"/>
+		<aop:advisor advice-ref="advisorTest" pointcut="execution(* com.zht.taotao.service.aop.Human.sleep(..))"/>
 	</aop:config>
 </beans>
 

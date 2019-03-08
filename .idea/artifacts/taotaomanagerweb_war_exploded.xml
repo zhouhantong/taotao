@@ -31,7 +31,6 @@
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.2" />
           <element id="library" level="project" name="Maven: com.github.pagehelper:pagehelper:3.4.2-fix" />
           <element id="library" level="project" name="Maven: com.github.jsqlparser:jsqlparser:0.9" />
-          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.32" />
           <element id="library" level="project" name="Maven: com.alibaba:druid:1.0.9" />
           <element id="library" level="module" name="Maven: com.alibaba:jconsole:1.8.0" module-name="taotaomanagermapper" />
           <element id="library" level="module" name="Maven: com.alibaba:tools:1.8.0" module-name="taotaomanagermapper" />

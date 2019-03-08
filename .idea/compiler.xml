@@ -6,6 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="taotao-protal" />
+        <module name="taotao-rest" />
+        <module name="taotao-search" />
         <module name="taotaocommon" />
         <module name="taotaomanagermapper" />
         <module name="taotaomanagerpojo" />
@@ -15,6 +18,9 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="taotao-parent" target="1.8" />
+      <module name="taotao-protal" target="1.8" />
+      <module name="taotao-rest" target="1.8" />
+      <module name="taotao-search" target="1.8" />
       <module name="taotaocommon" target="1.8" />
       <module name="taotaomanager" target="1.8" />
       <module name="taotaomanagermapper" target="1.8" />
